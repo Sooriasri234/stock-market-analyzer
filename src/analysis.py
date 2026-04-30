@@ -10,14 +10,9 @@ def add_features(df):
 
     return df
 
-def group_data(df, freq='M'):
-    """
-    freq options:
-    'W' = Weekly
-    'M' = Monthly
-    'Q' = Quarterly
-    'Y' = Yearly
-    """
+def group_data(df, freq):
+    if freq is None:
+        return df
 
     grouped = df.resample(freq).agg({
         'Open': 'first',

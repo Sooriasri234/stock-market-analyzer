@@ -58,8 +58,10 @@ freq_map = {
     "Yearly": "Y"
 }
 
-if freq_map[group_option]:
-    df_grouped = group_data(df, freq_map[group_option])
+freq = freq_map[group_option]
+
+if freq is not None:
+    df_grouped = group_data(df, freq)
 else:
     df_grouped = df.copy()
 
