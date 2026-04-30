@@ -101,3 +101,7 @@ The dashboard displays:
 This project demonstrates how data science techniques can be applied to financial data to extract meaningful insights and support decision-making.
 
 ---
+=======
+# stock-market-analyzer
+Stock market data analysis and visualization using Python and Streamlit
+
