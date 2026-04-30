@@ -9,11 +9,23 @@ def clean_data(df):
         'Total Traded Quantity': 'Volume'
     })
 
-    df['Date'] = pd.to_datetime(df['Date'])
+    # 🔥 safer datetime conversion
+    df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+
+    # ❗ remove invalid dates
+    df = df.dropna(subset=['Date'])
+
+    # sort properly
     df = df.sort_values('Date')
+
+    # set index
     df.set_index('Date', inplace=True)
 
-    df = df[['Open', 'High', 'Low', 'Close', 'Volume']]
+    # ensure numeric values (VERY IMPORTANT)
+    df[['Open', 'High', 'Low', 'Close', 'Volume']] = df[
+        ['Open', 'High', 'Low', 'Close', 'Volume']
+    ].apply(pd.to_numeric, errors='coerce')
+
     df = df.dropna()
 
     return df

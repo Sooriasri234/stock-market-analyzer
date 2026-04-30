@@ -54,16 +54,19 @@ group_option = st.sidebar.selectbox(
 freq_map = {
     "Daily": None,
     "Weekly": "W",
-    "Monthly": "M",
-    "Yearly": "Y"
+    "Monthly": "MS",   # safer
+    "Yearly": "YS"     # safer
 }
 
 freq = freq_map[group_option]
 
+# ensure datetime index (extra safety)
+df_filtered.index = pd.to_datetime(df_filtered.index)
+
 if freq is not None:
-    df_grouped = group_data(df, freq)
+    df_grouped = group_data(df_filtered, freq)
 else:
-    df_grouped = df.copy()
+    df_grouped = df_filtered.copy()
 
 st.subheader(f"📊 {group_option} Aggregated Data")
 st.write(df_grouped.tail())
