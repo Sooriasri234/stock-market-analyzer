@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+.DS_Store
+
+# Streamlit
+.streamlit/
+
+# Large data (optional)
+data/*.csv
